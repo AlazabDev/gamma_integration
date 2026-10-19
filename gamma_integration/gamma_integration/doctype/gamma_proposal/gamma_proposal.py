@@ -126,7 +126,6 @@ class GammaProposal(Document):
             
             # Save quotation with flags to allow updates
             quotation.flags.ignore_validate_update_after_submit = True
-            quotation.flags.ignore_permissions = True
             quotation.save()
             
         except Exception as e:
