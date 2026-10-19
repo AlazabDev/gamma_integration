@@ -14,6 +14,7 @@ def create_gamma_proposal(quotation_name, proposal_name, proposal_type="Main Pro
             frappe.throw(f"Quotation {quotation_name} not found")
         
         quotation = frappe.get_doc("Quotation", quotation_name)
+        quotation.check_permission("write")
         
         # Create Gamma Proposal document
         gamma_proposal = frappe.get_doc({
@@ -22,7 +23,7 @@ def create_gamma_proposal(quotation_name, proposal_name, proposal_type="Main Pro
             "quotation": quotation_name,
             "proposal_type": proposal_type,
             "status": "Draft",
-            "gamma_url": f"https://gamma.app/docs/new-{frappe.generate_hash(length=8)}"
+            "gamma_url": ""
         })
         
         gamma_proposal.insert()
@@ -30,7 +31,7 @@ def create_gamma_proposal(quotation_name, proposal_name, proposal_type="Main Pro
         # Add to quotation's gamma proposals table if the field exists
         try:
             # Check if the custom field exists before trying to use it
-            if frappe.db.has_column("Quotation", "gamma_proposals"):
+            if frappe.get_meta("Quotation").has_field("gamma_proposals"):
                 # Map proposal types to child table format
                 type_mapping = {
                     "Main Proposal": "Main",
@@ -71,6 +72,7 @@ def sync_gamma_data(gamma_proposal_name, gamma_url):
     """Sync Gamma proposal data"""
     try:
         gamma_proposal = frappe.get_doc("Gamma Proposal", gamma_proposal_name)
+        gamma_proposal.check_permission("write")
         gamma_proposal.gamma_url = gamma_url
         gamma_proposal.last_updated = frappe.utils.now()
         gamma_proposal.save()
@@ -276,7 +278,7 @@ def unlink_gamma_proposal(proposal_name, link_name):
         
         # Set flags to allow updating submitted documents
         quotation.flags.ignore_validate_update_after_submit = True
-        quotation.flags.ignore_permissions = True
+        quotation.check_permission("write")
         quotation.save()
         
         return {

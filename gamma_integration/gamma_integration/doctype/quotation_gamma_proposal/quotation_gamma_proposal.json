@@ -35,7 +35,7 @@
             "fieldtype": "Select",
             "in_list_view": 1,
             "label": "Status",
-            "options": "Draft\nShared\nApproved"
+            "options": "Draft\nIn Review\nShared\nApproved\nRejected"
         },
         {
             "fieldname": "is_primary",

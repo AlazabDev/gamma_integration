@@ -43,8 +43,7 @@
   {
    "fieldname": "gamma_url",
    "fieldtype": "Data",
-   "label": "Gamma URL",
-   "reqd": 1
+   "label": "Gamma URL"
   },
   {
    "fieldname": "gamma_embed_id",
