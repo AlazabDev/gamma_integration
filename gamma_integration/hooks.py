@@ -145,9 +145,12 @@ doc_events = {
 
 # Fixtures
 fixtures = [
-    "Custom Field",
-    "Property Setter",
-    "Print Format"
+    {"dt": "Custom Field", "filters": [["name", "in", [
+        "Quotation-custom_gamma",
+        "Quotation-gamma_proposals_section",
+        "Quotation-gamma_proposals",
+        "Quotation-gamma_proposals_display",
+    ]]]},
 ]
 
 # Scheduled Tasks
