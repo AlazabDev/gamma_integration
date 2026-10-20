@@ -1,9 +1,10 @@
 {# Alazab Sales Invoice print template. All accounting figures come from ERPNext. #}
+{% set brand = az_print_brand() %}
 <style>{% include "gamma_integration/templates/print_formats/alazab_base.css" %}</style>
-<div class="az-document" dir="{{ 'rtl' if print_language == 'ar' else 'ltr' }}">
+<div class="az-document" dir="{{ 'rtl' if (print_language|default(brand.print_language)) == 'ar' else 'ltr' }}" style="--az-navy:{{ brand.primary_color }};--az-gold:{{ brand.accent_color }};--az-muted:{{ brand.surface_color }};--az-text:{{ brand.text_color }};--az-border:{{ brand.border_color }};font-family:{{ brand.font_family_latin }},{{ brand.font_family_arabic }},sans-serif;font-size:{{ brand.body_size }}px">
   <header class="az-top">
-    <div>{% if letter_head and letter_head.content %}{{ letter_head.content }}{% elif company_logo %}<img class="az-logo" src="{{ company_logo }}">{% else %}<strong>{{ doc.company }}</strong>{% endif %}</div>
-    <div><div class="az-title">{{ _("INVOICE") }}</div><div class="az-tax">{{ _("Tax ID") }}: {{ doc.tax_id or "" }}</div></div>
+    <div>{% if brand.logo %}<img class="az-logo" src="{{ brand.logo }}">{% elif letter_head and letter_head.content %}{{ letter_head.content }}{% elif company_logo %}<img class="az-logo" src="{{ company_logo }}">{% else %}<strong>{{ brand.brand_name or doc.company }}</strong>{% endif %}</div>
+    <div><div class="az-title">{{ _("INVOICE") }}</div><div class="az-tax">{{ _("Tax ID") }}: {{ doc.tax_id or brand.tax_id or "" }}</div></div>
   </header>
   <section class="az-meta">
     <div><strong>{{ _("Date") }}:</strong> {{ frappe.utils.formatdate(doc.posting_date) }}</div>
@@ -39,6 +40,8 @@
     </table>
     <section class="az-rules"><strong>{{ _("Terms and Conditions") }}</strong><div>{{ doc.terms or "" }}</div></section>
   </div>
-  <footer class="az-footer"><span>{{ doc.company }}</span><span>{{ doc.name }}</span><span>{{ frappe.utils.formatdate(doc.posting_date) }}</span></footer>
+  {% if brand.bank_name or brand.bank_account_number %}<div class="az-bank"><strong>{{ _("Bank Details") }}</strong><div>{{ brand.bank_name or "" }} · {{ brand.bank_account_name or "" }}</div><div>{{ brand.bank_account_number or "" }} · {{ brand.bank_swift or "" }}</div></div>{% endif %}
+  <footer class="az-footer"><span>{{ brand.contact_address or doc.company }}</span><span>{{ brand.contact_email or "" }}</span><span>{{ brand.contact_phone or "" }}</span></footer>
+  {% if brand.footer_note %}<div class="az-footer-note">{{ brand.footer_note }}</div>{% endif %}
   <div class="az-bottom-bar"></div>
 </div>
