@@ -8,5 +8,5 @@
   "print_format_type": "Jinja",
   "disabled": 0,
   "html": "{% include \"gamma_integration/templates/print_formats/alazab_invoice.html\" %}",
-  "css": "{% include \"gamma_integration/templates/print_formats/alazab_base.css\" %}"
+  "css": ""
 }
