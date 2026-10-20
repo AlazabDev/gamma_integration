@@ -1,0 +1,64 @@
+{
+  "doctype": "DocType",
+  "name": "AZ Foundry Settings",
+  "module": "Gamma Integration",
+  "issingle": 1,
+  "field_order": [
+    "enabled",
+    "project_endpoint",
+    "agent_name",
+    "agent_version",
+    "model_deployment",
+    "api_key",
+    "timeout_seconds"
+  ],
+  "fields": [
+    {
+      "fieldname": "enabled",
+      "label": "Enabled",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "project_endpoint",
+      "label": "Foundry Project Endpoint",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "agent_name",
+      "label": "Agent Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "agent_version",
+      "label": "Agent Version (optional)",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "model_deployment",
+      "label": "Model Deployment (optional)",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "api_key",
+      "label": "API Key",
+      "fieldtype": "Password"
+    },
+    {
+      "fieldname": "timeout_seconds",
+      "label": "Timeout Seconds",
+      "fieldtype": "Int",
+      "default": "90"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ]
+}

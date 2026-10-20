@@ -1,0 +1,44 @@
+{# Alazab Sales Invoice print template. All accounting figures come from ERPNext. #}
+<style>{% include "gamma_integration/templates/print_formats/alazab_base.css" %}</style>
+<div class="az-document" dir="{{ 'rtl' if print_language == 'ar' else 'ltr' }}">
+  <header class="az-top">
+    <div>{% if letter_head and letter_head.content %}{{ letter_head.content }}{% elif company_logo %}<img class="az-logo" src="{{ company_logo }}">{% else %}<strong>{{ doc.company }}</strong>{% endif %}</div>
+    <div><div class="az-title">{{ _("INVOICE") }}</div><div class="az-tax">{{ _("Tax ID") }}: {{ doc.tax_id or "" }}</div></div>
+  </header>
+  <section class="az-meta">
+    <div><strong>{{ _("Date") }}:</strong> {{ frappe.utils.formatdate(doc.posting_date) }}</div>
+    <div><strong>{{ _("Invoice Number") }}:</strong> {{ doc.name }}</div>
+    <div><strong>{{ _("Invoice to") }}:</strong> {{ doc.customer_name or doc.customer }}</div>
+    <div><strong>{{ _("Payment Terms") }}:</strong> {{ doc.payment_terms_template or "" }}</div>
+    <div><strong>{{ _("Address") }}:</strong> {{ doc.address_display or "" }}</div>
+    <div><strong>{{ _("Company") }}:</strong> {{ doc.company }}</div>
+  </section>
+  <table class="az-items">
+    <thead><tr>
+      <th style="width:16%">{{ _("Total") }}</th><th style="width:13%">{{ _("Price") }}</th>
+      <th style="width:9%">{{ _("Qty") }}</th><th style="width:29%">{{ _("Item") }}</th>
+      <th style="width:17%">{{ _("Code") }}</th><th style="width:16%">{{ _("Image") }}</th>
+    </tr></thead>
+    <tbody>{% for item in doc.items %}
+      <tr>
+        <td>{{ frappe.utils.fmt_money(item.amount, currency=doc.currency) }}</td>
+        <td>{{ frappe.utils.fmt_money(item.rate, currency=doc.currency) }}</td>
+        <td>{{ item.qty }} {{ item.uom or "" }}</td>
+        <td>{{ item.description or item.item_name or "" }}</td>
+        <td>{{ item.item_code or "" }}</td>
+        <td>{% if item.image %}<img src="{{ item.image }}">{% endif %}</td>
+      </tr>
+    {% endfor %}</tbody>
+  </table>
+  <div class="az-bottom">
+    <table class="az-summary">
+      <tr><td>{{ _("Net Total") }}</td><td>{{ frappe.utils.fmt_money(doc.net_total, currency=doc.currency) }}</td></tr>
+      <tr><td>{{ _("Taxes") }}</td><td>{{ frappe.utils.fmt_money(doc.total_taxes_and_charges, currency=doc.currency) }}</td></tr>
+      <tr><td>{{ _("Paid") }}</td><td>{{ frappe.utils.fmt_money(doc.paid_amount or 0, currency=doc.currency) }}</td></tr>
+      <tr><td>{{ _("Grand Total") }}</td><td>{{ frappe.utils.fmt_money(doc.grand_total, currency=doc.currency) }}</td></tr>
+    </table>
+    <section class="az-rules"><strong>{{ _("Terms and Conditions") }}</strong><div>{{ doc.terms or "" }}</div></section>
+  </div>
+  <footer class="az-footer"><span>{{ doc.company }}</span><span>{{ doc.name }}</span><span>{{ frappe.utils.formatdate(doc.posting_date) }}</span></footer>
+  <div class="az-bottom-bar"></div>
+</div>
