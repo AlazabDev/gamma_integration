@@ -1,0 +1,17 @@
+:root {
+  --az-brand-navy: #030957;
+  --az-brand-gold: #FFB900;
+  --az-brand-white: #FFFFFF;
+  --az-brand-light: #F8F8F8;
+  --az-brand-border: #E7E7E7;
+  --az-brand-text: #170D02;
+  --az-brand-danger: #DC2626;
+  --az-brand-success: #008000;
+}
+.az-brand-card { background: var(--az-brand-white); border: 1px solid var(--az-brand-border); border-radius: 8px; }
+.az-brand-heading { color: var(--az-brand-navy); font-weight: 800; }
+.az-brand-accent { color: var(--az-brand-navy); border-inline-start: 4px solid var(--az-brand-gold); padding-inline-start: 12px; }
+.az-brand-icon { width: 24px; height: 24px; color: var(--az-brand-navy); stroke: currentColor; }
+.az-brand-icon--accent { color: var(--az-brand-gold); }
+.az-brand-button { background: var(--az-brand-navy); color: var(--az-brand-white); border: 1px solid var(--az-brand-navy); border-radius: 6px; }
+.az-brand-button:focus-visible { outline: 3px solid var(--az-brand-gold); outline-offset: 2px; }
