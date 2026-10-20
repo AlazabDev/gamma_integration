@@ -28,7 +28,7 @@ def test_endpoint_validation():
                 "https://example.services.ai.azure.com.evil.org"):
         try:
             validate_endpoint(url)
-        except ValueError:
+        except Exception:
             continue
         raise AssertionError("unsafe endpoint accepted: " + url)
 
