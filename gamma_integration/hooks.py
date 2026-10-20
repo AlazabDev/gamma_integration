@@ -76,10 +76,7 @@ app_include_js = ["/assets/gamma_integration/js/gamma_integration.js", "/assets/
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "gamma_integration.utils.jinja_methods",
-# 	"filters": "gamma_integration.utils.jinja_filters"
-# }
+jinja = {"methods": ["gamma_integration.brand_kit.get_print_brand"]}
 
 # Installation
 # ------------
