@@ -8,12 +8,15 @@ frappe.ui.form.on("Quotation", {
         freeze: true,
         callback(r) {
           if (!r.message || !r.message.proposal) return;
-          frappe.msgprint({
-            title: __("Generation queued"),
-            message: __("Generated document: {0}", [r.message.proposal]),
-            indicator: "blue"
-          });
+          frappe.show_alert({message: __("Proposal generation queued"), indicator: "blue"});
+          frappe.set_route("Form", "AZ Generated Proposal", r.message.proposal);
         }
+      });
+    }, __("Gamma"));
+    frm.add_custom_button(__("AI Proposals"), () => {
+      frappe.set_route("List", "AZ Generated Proposal", {
+        source_doctype: frm.doctype,
+        source_name: frm.doc.name
       });
     }, __("Gamma"));
   }
