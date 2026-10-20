@@ -27,7 +27,7 @@ required_apps = ["erpnext"]
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/gamma_integration/css/gamma_integration.css"
+app_include_css = ["/assets/gamma_integration/css/gamma_integration.css", "/assets/gamma_integration/css/alazab_brand.css"]
 app_include_js = ["/assets/gamma_integration/js/gamma_integration.js", "/assets/gamma_integration/js/az_foundry_buttons.js"]
 
 # include js, css files in header of web template
