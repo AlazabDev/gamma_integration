@@ -1,0 +1,55 @@
+{
+  "name": "Alazab",
+  "version": "1.0.0",
+  "colors": {
+    "navy": "#030957",
+    "gold": "#FFB900",
+    "white": "#FFFFFF",
+    "light": "#F8F8F8",
+    "border": "#E7E7E7",
+    "text": "#170D02",
+    "blue": "#262DAE",
+    "danger": "#DC2626",
+    "success": "#008000"
+  },
+  "typography": {
+    "arabic": [
+      "Noto Sans Arabic",
+      "Tahoma"
+    ],
+    "latin": [
+      "Arial",
+      "Inter"
+    ],
+    "weights": {
+      "regular": 400,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    }
+  },
+  "print": {
+    "size": "A4",
+    "tableHeaderRepeat": true,
+    "productImages": true,
+    "footer": true
+  },
+  "icons": {
+    "sizes": [
+      16,
+      24
+    ],
+    "strokeWidths": [
+      1.5,
+      2
+    ],
+    "colors": [
+      "#030957",
+      "#FFB900"
+    ],
+    "style": "simple outline, consistent corner radius, no embedded text"
+  },
+  "assets": {
+    "logo": "configured in AZ Brand Kit; never invent or replace official logo"
+  }
+}
