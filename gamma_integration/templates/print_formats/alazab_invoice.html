@@ -1,8 +1,9 @@
 {# Alazab Sales Invoice print template. All accounting figures come from ERPNext. #}
+<style>{% include "gamma_integration/templates/print_formats/alazab_base.css" %}</style>
 <div class="az-document" dir="{{ 'rtl' if print_language == 'ar' else 'ltr' }}">
   <header class="az-top">
     <div>{% if letter_head and letter_head.content %}{{ letter_head.content }}{% elif company_logo %}<img class="az-logo" src="{{ company_logo }}">{% else %}<strong>{{ doc.company }}</strong>{% endif %}</div>
-    <div><div class="az-title">{{ _("INVOICE") }}</div><div class="az-tax">{{ _("Tax ID") }}: {{ frappe.db.get_value("Company", doc.company, "tax_id") or "" }}</div></div>
+    <div><div class="az-title">{{ _("INVOICE") }}</div><div class="az-tax">{{ _("Tax ID") }}: {{ doc.tax_id or "" }}</div></div>
   </header>
   <section class="az-meta">
     <div><strong>{{ _("Date") }}:</strong> {{ frappe.utils.formatdate(doc.posting_date) }}</div>
