@@ -1,5 +1,5 @@
 {# Alazab Sales Invoice print template. All accounting figures come from ERPNext. #}
-{% set brand = az_print_brand() %}
+{% set brand = get_print_brand() %}
 <style>{% include "gamma_integration/templates/print_formats/alazab_base.css" %}</style>
 <div class="az-document" dir="{{ 'rtl' if (print_language|default(brand.print_language)) == 'ar' else 'ltr' }}" style="--az-navy:{{ brand.primary_color }};--az-gold:{{ brand.accent_color }};--az-muted:{{ brand.surface_color }};--az-text:{{ brand.text_color }};--az-border:{{ brand.border_color }};font-family:{{ brand.font_family_latin }},{{ brand.font_family_arabic }},sans-serif;font-size:{{ brand.body_size }}px">
   <header class="az-top">
